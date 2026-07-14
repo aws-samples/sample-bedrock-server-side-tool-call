@@ -27,7 +27,7 @@ An AI-powered e-commerce shopping assistant where **Amazon Bedrock executes tool
 │       │          ┌──────────────────────────────────────────────────────────┐    │
 │       │          │         Amazon Bedrock Responses API (Mantle)            │    │
 │       │          │                                                          │    │
-│       │          │  GPT OSS 120B  ───►  reasons + selects tools            │    │
+│       │          │  GPT-5.6  ───►  reasons + selects tools            │    │
 │       │          │       │                      │                            │    │
 │       │          │       │ ① Discover tools     │ ② Execute tool call       │    │
 │       │          │       │    (MCP list_tools)   │    (MCP tools/call)       │    │
@@ -72,7 +72,7 @@ An AI-powered e-commerce shopping assistant where **Amazon Bedrock executes tool
 
 ### Prerequisites
 
-- AWS account with Bedrock model access for `openai.gpt-oss-120b`
+- AWS account with Bedrock model access for `openai.gpt-5.6-sol`
 - AWS CLI configured (`aws configure`)
 - Python 3.12+
 - Docker (for container-based Runtime deployment)
@@ -185,7 +185,7 @@ ecommerce-agent-demo/
 
 - **Endpoint:** `https://bedrock-mantle.<region>.api.aws/v1/responses`
 - **Auth:** SigV4 with service name `bedrock` + **AmazonBedrockMantleFullAccess** IAM policy
-- **Model:** `openai.gpt-oss-120b` (only model family supporting server-side tool execution)
+- **Model:** `openai.gpt-5.6-sol` (only model family supporting server-side tool execution)
 - **Streaming:** Required (`"stream": true`) — non-streaming times out for tool-heavy requests
 - **Input format:** Must use message array — `[{"type": "message", "role": "user", "content": [...]}]`
 

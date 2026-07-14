@@ -376,7 +376,7 @@ ALL_TOOLS = [
 ]
 
 
-def create_agent(model_id: str = "openai.gpt-oss-120b", region: str = "us-west-2") -> Agent:
+def create_agent(model_id: str = "openai.gpt-5.6-sol", region: str = "us-west-2") -> Agent:
     """Create the ShopAssist agent with all e-commerce tools."""
     model = BedrockModel(
         model_id=model_id,

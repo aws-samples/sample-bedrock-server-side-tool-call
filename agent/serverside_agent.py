@@ -36,7 +36,7 @@ def create_response_with_server_side_tools(
     user_message: str,
     gateway_arn: str,
     region: str = "us-west-2",
-    model_id: str = "openai.gpt-oss-120b",
+    model_id: str = "openai.gpt-5.6-sol",
     system_prompt: str = "You are ShopAssist, an AI-powered e-commerce shopping assistant. Use the available tools to help customers.",
 ) -> str:
     """Execute a request with server-side tool execution via Responses API (streaming).
@@ -123,7 +123,7 @@ def create_response_with_server_side_tools(
 def run_server_side_demo(
     gateway_arn: str,
     region: str = "us-west-2",
-    model_id: str = "openai.gpt-oss-120b",
+    model_id: str = "openai.gpt-5.6-sol",
 ):
     """Run interactive demo using server-side tool execution."""
     print("🛍️  ShopAssist — Server-Side Tool Execution Demo")
@@ -172,5 +172,5 @@ if __name__ == "__main__":
         sys.exit(1)
 
     region = os.environ.get("AWS_REGION", "us-west-2")
-    model = os.environ.get("BEDROCK_MODEL_ID", "openai.gpt-oss-120b")
+    model = os.environ.get("BEDROCK_MODEL_ID", "openai.gpt-5.6-sol")
     run_server_side_demo(gw_arn, region=region, model_id=model)

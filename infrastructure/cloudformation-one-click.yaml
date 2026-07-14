@@ -6,7 +6,7 @@ Description: >
 Parameters:
   ModelId:
     Type: String
-    Default: openai.gpt-oss-120b
+    Default: openai.gpt-5.6-sol
     Description: Bedrock model ID for the agent
 
   AgentCodeS3Bucket:

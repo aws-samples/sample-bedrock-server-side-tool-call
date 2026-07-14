@@ -22,7 +22,7 @@ import boto3
 REGION = os.environ.get("AWS_REGION", "us-west-2")
 STACK_NAME = os.environ.get("STACK_NAME", "shopassist-demo")
 AGENT_NAME = os.environ.get("AGENT_NAME", "ShopAssistDemo")
-MODEL_ID = os.environ.get("BEDROCK_MODEL_ID", "openai.gpt-oss-120b")
+MODEL_ID = os.environ.get("BEDROCK_MODEL_ID", "openai.gpt-5.6-sol")
 
 
 def get_stack_outputs(stack_name: str) -> dict:

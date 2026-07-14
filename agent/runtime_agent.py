@@ -5,7 +5,7 @@ On /invocations, calls the Bedrock Responses API with server-side tool execution
 via AgentCore Gateway — the model discovers and invokes tools automatically.
 
 Architecture:
-  Client → Runtime /invocations → Responses API → GPT OSS → Gateway → Lambda → DynamoDB
+  Client → Runtime /invocations → Responses API → GPT-5.6 → Gateway → Lambda → DynamoDB
                                        ↓
                               (tool results injected server-side)
                                        ↓
@@ -14,7 +14,7 @@ Architecture:
 Environment variables (auto-injected by CloudFormation):
   GATEWAY_ARN: AgentCore Gateway ARN
   AWS_REGION: AWS region (default: us-west-2)
-  BEDROCK_MODEL_ID: Model ID (default: openai.gpt-oss-120b)
+  BEDROCK_MODEL_ID: Model ID (default: openai.gpt-5.6-sol)
 """
 
 from __future__ import annotations
@@ -35,7 +35,7 @@ if os.path.isdir(_deps):
 
 REGION = os.environ.get("AWS_REGION", "us-west-2")
 GATEWAY_ARN = os.environ.get("GATEWAY_ARN", "")
-MODEL_ID = os.environ.get("BEDROCK_MODEL_ID", "openai.gpt-oss-120b")
+MODEL_ID = os.environ.get("BEDROCK_MODEL_ID", "openai.gpt-5.6-sol")
 SYSTEM_PROMPT = (
     "You are ShopAssist, an AI e-commerce shopping assistant. "
     "Use the available tools to search products, manage carts, and handle orders. "

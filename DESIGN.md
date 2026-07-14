@@ -99,7 +99,7 @@ mcp_client = MCPClient(lambda: streamablehttp_client(gateway_url))
 with mcp_client:
     tools = mcp_client.list_tools_sync()
     agent = Agent(
-        model=BedrockModel(model_id="openai.gpt-oss-120b"),
+        model=BedrockModel(model_id="openai.gpt-5.6-sol"),
         system_prompt=ECOMMERCE_PROMPT,
         tools=tools
     )
@@ -111,7 +111,7 @@ with mcp_client:
 import boto3
 client = boto3.client('bedrock-runtime')
 response = client.create_response(
-    modelId="openai.gpt-oss-120b",
+    modelId="openai.gpt-5.6-sol",
     input=[{"role": "user", "content": [{"text": "Show me wireless headphones under $100"}]}],
     tools=[{
         "mcpServerConnector": {

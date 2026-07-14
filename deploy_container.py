@@ -24,7 +24,7 @@ import boto3
 REGION = "us-west-2"
 STACK_NAME = "shopassist-demo"
 AGENT_NAME = "ShopAssistDemo"
-MODEL_ID = "openai.gpt-oss-120b"
+MODEL_ID = "openai.gpt-5.6-sol"
 REPO_NAME = "shopassist-demo"
 
 # Deployment timing constants (seconds)

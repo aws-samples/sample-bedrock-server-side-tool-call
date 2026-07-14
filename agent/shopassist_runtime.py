@@ -4,7 +4,7 @@ This is the production entrypoint deployed to AgentCore Runtime.
 It uses the Bedrock Responses API (Mantle) with an MCP server connector
 pointing to an AgentCore Gateway, enabling fully server-side tool execution.
 
-The model (GPT OSS 120B) discovers tools from the Gateway, reasons about
+The model (GPT-5.6) discovers tools from the Gateway, reasons about
 which to call, executes them, and generates a final response — all within
 a single API call. No client-side orchestration loop needed.
 """
@@ -24,7 +24,7 @@ app = BedrockAgentCoreApp()
 # ---------------------------------------------------------------------------
 REGION = os.environ.get("AWS_REGION", "us-west-2")
 GATEWAY_ARN = os.environ.get("GATEWAY_ARN", "")
-MODEL_ID = os.environ.get("BEDROCK_MODEL_ID", "openai.gpt-oss-120b")
+MODEL_ID = os.environ.get("BEDROCK_MODEL_ID", "openai.gpt-5.6-sol")
 MANTLE_URL = f"https://bedrock-mantle.{REGION}.api.aws/v1/responses"
 
 SYSTEM_PROMPT = (

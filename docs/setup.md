@@ -35,7 +35,7 @@ python demo/run_demo.py
 ### Custom Model
 ```bash
 # Use a different model
-export BEDROCK_MODEL_ID="openai.gpt-oss-120b"
+export BEDROCK_MODEL_ID="openai.gpt-5.6-sol"
 export AWS_REGION="us-west-2"
 python demo/run_demo.py
 ```
