@@ -32,6 +32,18 @@ from botocore.auth import SigV4Auth
 from botocore.awsrequest import AWSRequest
 
 
+def _responses_url(region: str, model_id: str) -> str:
+    """Resolve the Bedrock Mantle Responses API URL for a given model.
+
+    The GPT-5.6 family (Sol/Terra/Luna, and 5.4/5.5) is served on the
+    `openai/v1/responses` path instead of the standard `v1/responses` path.
+    See: https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-openai-gpt-56-sol.html
+    """
+    if model_id.startswith("openai.gpt-5."):
+        return f"https://bedrock-mantle.{region}.api.aws/openai/v1/responses"
+    return f"https://bedrock-mantle.{region}.api.aws/v1/responses"
+
+
 def create_response_with_server_side_tools(
     user_message: str,
     gateway_arn: str,
@@ -46,7 +58,7 @@ def create_response_with_server_side_tools(
     session = boto3.Session(region_name=region)
     credentials = session.get_credentials().get_frozen_credentials()
 
-    url = f"https://bedrock-mantle.{region}.api.aws/v1/responses"
+    url = _responses_url(region, model_id)
 
     # IMPORTANT: input must use the full message array format, not a plain string.
     # Using a plain string causes the model to loop tool calls indefinitely.
