@@ -19,13 +19,26 @@ from bedrock_agentcore.runtime import BedrockAgentCoreApp
 
 app = BedrockAgentCoreApp()
 
+
+def _responses_url(region: str, model_id: str) -> str:
+    """Resolve the Bedrock Mantle Responses API URL for a given model.
+
+    The GPT-5.6 family (Sol/Terra/Luna, and 5.4/5.5) is served on the
+    `openai/v1/responses` path instead of the standard `v1/responses` path.
+    See: https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-openai-gpt-56-sol.html
+    """
+    if model_id.startswith("openai.gpt-5."):
+        return f"https://bedrock-mantle.{region}.api.aws/openai/v1/responses"
+    return f"https://bedrock-mantle.{region}.api.aws/v1/responses"
+
+
 # ---------------------------------------------------------------------------
 # Configuration (injected via Runtime environmentVariables)
 # ---------------------------------------------------------------------------
 REGION = os.environ.get("AWS_REGION", "us-west-2")
 GATEWAY_ARN = os.environ.get("GATEWAY_ARN", "")
 MODEL_ID = os.environ.get("BEDROCK_MODEL_ID", "openai.gpt-5.6-sol")
-MANTLE_URL = f"https://bedrock-mantle.{REGION}.api.aws/v1/responses"
+MANTLE_URL = _responses_url(REGION, MODEL_ID)
 
 SYSTEM_PROMPT = (
     "You are ShopAssist, a friendly and helpful AI e-commerce shopping assistant. "
